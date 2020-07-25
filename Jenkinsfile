@@ -128,13 +128,13 @@ pipeline {
 			// -------------------------------------------------------------------------
 
 			stage('Authorize to Salesforce - version 1') {
-				rc = command "sudo ${toolbelt}/sfdx force:auth:jwt:grant --instanceurl ${SF_INSTANCE_URL} --clientid ${SF_CONSUMER_KEY} --jwtkeyfile ${SERVER_KEY_CREDENTIALS_ID} --username ${SF_USERNAME} --setalias ${ALIAS}"
+				// rc = command "sudo ${toolbelt}/sfdx force:auth:jwt:grant --instanceurl ${SF_INSTANCE_URL} --clientid ${SF_CONSUMER_KEY} --jwtkeyfile ${SERVER_KEY_CREDENTIALS_ID} --username ${SF_USERNAME} --setalias ${ALIAS}"
 				
-				if (rc != 0) {
-				error 'Salesforce org authorization failed.'
-				} else {
-					println "*** Authenticated successfully with " + env.SF_USERNAME
-				}
+				// if (rc != 0) {
+				// error 'Salesforce org authorization failed.'
+				// } else {
+				// 	println "*** Authenticated successfully with " + env.SF_USERNAME
+				// }
 			}
 
 
@@ -196,7 +196,6 @@ pipeline {
 			
 			
 			stage('Check Only Deploy - V2 from sforg docker') {
-				println ""
 			// Run in the current workspace of Jenkins
 			//rc = command "sudo ${toolbelt}/sfdx force:mdapi:deploy --checkonly --wait 10 --deploydir ${DEPLOYDIR} --targetusername  ${ALIAS} --testlevel ${TEST_LEVEL}"
 			
