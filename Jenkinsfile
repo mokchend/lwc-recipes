@@ -12,15 +12,25 @@ pipeline {
 
 		stage('Project init') {			
 
-			steps {
-				//checkout scm
-				//git branch: 'master', url: 'https://github.com/mokchend/lwc-recipes.git'
-				checkout([$class: 'GitSCM', branches: [[name: '*/master']],
-    					userRemoteConfigs: [[url: 'https://github.com/mokchend/lwc-recipes.git']]])
-				echo "Check your environment variables"
+			// steps {
+			// 	//checkout scm
+			// 	//git branch: 'master', url: 'https://github.com/mokchend/lwc-recipes.git'
+			// 	checkout([$class: 'GitSCM', branches: [[name: '*/master']],
+    		// 			userRemoteConfigs: [[url: 'https://github.com/mokchend/lwc-recipes.git']]])
+			// 	echo "Check your environment variables"
 				
-        		sh "git checkout master"
-			}			
+        	// 	sh "git checkout master"
+			// }		
+
+			step {
+				checkout([
+					$class: 'GitSCM',
+					branches: scm.branches,
+					extensions: scm.extensions + [[$class: 'LocalBranch'], [$class: 'WipeWorkspace']],
+					userRemoteConfigs: [[url: 'https://github.com/mokchend/lwc-recipes.git']]])
+					doGenerateSubmoduleConfigurations: false
+				])
+			}	
 		}
 
 
