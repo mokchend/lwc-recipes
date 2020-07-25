@@ -1,11 +1,8 @@
 #!groovy
 
+// https://www.jenkins.io/doc/book/pipeline/syntax/
 pipeline {
     agent any
-
-	// def toolbelt = tool 'toolbelt'
-	// agent any
-	// https://www.jenkins.io/doc/book/pipeline/syntax/
 
 	stages {
 
@@ -13,10 +10,13 @@ pipeline {
 		// Check out code from source control.
 		// -------------------------------------------------------------------------
 
-		stage('Checkout source') {			
+		stage('Project init') {			
 			steps {
                 checkout scm
             }
+			steps {
+				echo "Check your environment variables"
+			}
 		}
 
 
@@ -62,6 +62,12 @@ pipeline {
             }			
             steps {
                 sh 'echo "Production Stage"'
+            }
+        }
+
+		stage('Cleaning up') {
+            steps {
+                sh 'echo "cleansing steps to be always executed"'
             }
         }
 
