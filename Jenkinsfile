@@ -56,8 +56,9 @@ pipeline {
 
         stage('Production') {
             when {
-                expression { BRANCH_NAME ==~ /(master)/ }
-            }			
+                beforeAgent true
+    			branch 'master'
+            }	
             steps {
                 sh 'echo "Production/master Stage"'
             }
