@@ -112,13 +112,14 @@ node {
 			//command "docker exec sfdx-jenkins-org_sforg_1 sfdx --help"
 			// STILL this error: Ensure the file /var/jenkins_home/workspace/salesforce_demo_org@2/.sfdx/key.json has the file permission octal value of 600. >> add sudo
 
+			/*
 			rc = command "sudo docker exec ${DOCKER_SFORG} sfdx force:auth:jwt:grant --instanceurl ${SF_INSTANCE_URL} --clientid ${SF_CONSUMER_KEY} --jwtkeyfile ${SERVER_KEY_CREDENTIALS_ID} --username ${SF_USERNAME} --setalias ${ALIAS}"
 			
 			if (rc != 0) {
 			error 'Salesforce org authorization failed.'
 			} else {
 				println "*** Authenticated successfully with " + env.SF_USERNAME
-			}
+			}*/
 		}
 		
 		// -------------------------------------------------------------------------
@@ -165,10 +166,11 @@ node {
 		   // From another Docker, As i have mounted the volume the path is: /var/jenkins_home/workspace/salesforce_demo_org/src/
 		   // So a tweak is necessay to make the call working
 		   // TODO: HARDOCDED Value for time beeing
+		   /*
 		   rc = command "sudo docker exec ${DOCKER_SFORG} sfdx force:mdapi:deploy --checkonly --wait 10 --deploydir  ${workspace}/${DEPLOYDIR} --targetusername  ${ALIAS} --testlevel ${TEST_LEVEL}"
 		   if (rc != 0) {
 		       error 'Salesforce deploy failed.'
-		   }
+		   }*/
 		}}		
 
 
