@@ -24,15 +24,19 @@ pipeline {
 
 			steps {
 				// https://stackoverflow.com/questions/45399894/is-it-impossible-to-checkout-a-different-branch-in-jenkinsfile
-
-
+				checkout scm
+				sh """
+					git config remote.origin.fetch '+refs/heads/*:refs/remotes/origin/*'
+					git fetch --all
+				"""
+				/*
 				checkout([
 					$class: 'GitSCM',
 					branches: scm.branches,
 					extensions: scm.extensions + [[$class: 'LocalBranch'], [$class: 'WipeWorkspace']],
 					userRemoteConfigs: [[url: 'https://github.com/mokchend/lwc-recipes.git']],
 					doGenerateSubmoduleConfigurations: false
-				])
+				]) */
 			}	
 		}
 
