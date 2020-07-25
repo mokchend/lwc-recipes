@@ -127,17 +127,17 @@ node {
 		// -------------------------------------------------------------------------
 
 		stage('Deploy and Run Tests - V1 from jenkins docker') {
-		    rc = command "sudo ${toolbelt}/sfdx force:mdapi:deploy --wait 10 --deploydir ${workspace}/${DEPLOYDIR} --targetusername ${ALIAS} --testlevel ${TEST_LEVEL}"
-			if (rc != 0) {
-				error 'Salesforce deploy and test run failed.'
-		    }
+		    // rc = command "sudo ${toolbelt}/sfdx force:mdapi:deploy --wait 10 --deploydir ${workspace}/${DEPLOYDIR} --targetusername ${ALIAS} --testlevel ${TEST_LEVEL}"
+			// if (rc != 0) {
+			// 	error 'Salesforce deploy and test run failed.'
+		    // }
 		}
 
 		stage('Deploy and Run Tests - V2 from sforg docker') {
-		    rc = command "sudo docker exec ${DOCKER_SFORG} sfdx force:mdapi:deploy --wait 10 --deploydir ${workspace}/${DEPLOYDIR} --targetusername ${ALIAS} --testlevel ${TEST_LEVEL}"
-			if (rc != 0) {
-				error 'Salesforce deploy and test run failed.'
-		    }
+		    // rc = command "sudo docker exec ${DOCKER_SFORG} sfdx force:mdapi:deploy --wait 10 --deploydir ${workspace}/${DEPLOYDIR} --targetusername ${ALIAS} --testlevel ${TEST_LEVEL}"
+			// if (rc != 0) {
+			// 	error 'Salesforce deploy and test run failed.'
+		    // }
 		}
 
 		// -------------------------------------------------------------------------
@@ -152,10 +152,10 @@ node {
 		   // From another Docker, As i have mounted the volume the path is: /var/jenkins_home/workspace/salesforce_demo_org/src/
 		   // So a tweak is necessay to make the call working
 		   // TODO: HARDOCDED Value for time beeing
-		   rc = command "sudo docker exec ${DOCKER_SFORG} sfdx force:mdapi:deploy --checkonly --wait 10 --deploydir /var/jenkins_home/workspace/salesforce_demo_org/${DEPLOYDIR} --targetusername  ${ALIAS} --testlevel ${TEST_LEVEL}"
-		   if (rc != 0) {
-		       error 'Salesforce deploy failed.'
-		   }
+		//    rc = command "sudo docker exec ${DOCKER_SFORG} sfdx force:mdapi:deploy --checkonly --wait 10 --deploydir /var/jenkins_home/workspace/salesforce_demo_org/${DEPLOYDIR} --targetusername  ${ALIAS} --testlevel ${TEST_LEVEL}"
+		//    if (rc != 0) {
+		//        error 'Salesforce deploy failed.'
+		//    }
 		
 		
 		stage('Check Only Deploy - V2 from sforg docker') {
