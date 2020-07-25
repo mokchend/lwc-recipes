@@ -171,9 +171,14 @@
         <quickActionListItems>
             <quickActionName>NewEvent</quickActionName>
         </quickActionListItems>
-        <quickActionListItems>
+        <!-- Deployment error: 
+        In field: QuickAction - no QuickAction named FeedItem.RypplePost found
+        Whats is the relation between FeedItem.LinkPost and FeedItem.RypplePost ?
+        RypplePost is referenced nowhere ?!!
+         -->
+        <!-- <quickActionListItems>
             <quickActionName>FeedItem.LinkPost</quickActionName>
-        </quickActionListItems>
+        </quickActionListItems> -->
         <quickActionListItems>
             <quickActionName>FeedItem.PollPost</quickActionName>
         </quickActionListItems>
