@@ -2,15 +2,43 @@
 
 node {
 
-	def toolbelt = tool 'toolbelt'
+	//def toolbelt = tool 'toolbelt'
+	agent any
+
+	stages {
+
+		stage('Boot Camp') {
+			command "cat ./asciiart/bunny.txt"
+		}
+				
+        stage('Development') {
+            steps {
+                sh 'echo "Development Stage"'
+            }
+        }
+
+        stage('Integration') {
+            steps {
+                sh 'echo "Integration Stage"'
+            }
+        }
+
+        stage('Acceptance') {
+            steps {
+                sh 'echo "Acceptance Stage"'
+            }
+        }
+
+        stage('Production') {
+            steps {
+                sh 'echo "Production Stage"'
+            }
+        }
+
+    }
 
 	
 
-
-
-	stage('Initialisation') {
-		command "cat ./asciiart/bunny.txt"
-	}
 
     // -------------------------------------------------------------------------
     // Check out code from source control.
