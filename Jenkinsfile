@@ -13,10 +13,8 @@ pipeline {
 		stage('Project init') {			
 			steps {
                 checkout scm
-            }
-			steps {
 				echo "Check your environment variables"
-			}
+            }
 		}
 
 
