@@ -28,28 +28,49 @@ pipeline {
 		}
 
         stage('Development') {
+            when {
+                branch 'development'
+            }				
             steps {
                 sh 'echo "Development Stage"'
             }
         }
 
         stage('Integration') {
+            when {
+                branch 'integration'
+            }				
             steps {
                 sh 'echo "Integration Stage"'
             }
         }
 
         stage('Acceptance') {
+            when {
+                branch 'acceptance'
+            }			
             steps {
                 sh 'echo "Acceptance Stage"'
             }
         }
 
         stage('Production') {
+            when {
+                branch 'production'
+            }			
             steps {
                 sh 'echo "Production Stage"'
             }
         }
+
+        stage('Master') {
+            when {
+                branch 'master'
+            }			
+            steps {
+                sh 'echo "Master Stage"'
+            }
+        }		
 
 	
     }
