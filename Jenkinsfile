@@ -18,6 +18,8 @@ pipeline {
 				checkout([$class: 'GitSCM', branches: [[name: '*/master']],
     					userRemoteConfigs: [[url: 'https://github.com/mokchend/lwc-recipes.git']]])
 				echo "Check your environment variables"
+				
+        		sh "git checkout master"
 			}			
 		}
 
