@@ -2,15 +2,25 @@
 
 node {
 
-	//def toolbelt = tool 'toolbelt'
-	agent any
+	// def toolbelt = tool 'toolbelt'
+	// agent any
+	// https://www.jenkins.io/doc/book/pipeline/syntax/
 
 	stages {
+
+		// -------------------------------------------------------------------------
+		// Check out code from source control.
+		// -------------------------------------------------------------------------
+
+		stage('checkout source') {
+			checkout scm
+		}
+
 
 		stage('Boot Camp') {
 			command "cat ./asciiart/bunny.txt"
 		}
-				
+
         stage('Development') {
             steps {
                 sh 'echo "Development Stage"'
@@ -34,21 +44,6 @@ node {
                 sh 'echo "Production Stage"'
             }
         }
-
-    }
-
-	
-
-
-    // -------------------------------------------------------------------------
-    // Check out code from source control.
-    // -------------------------------------------------------------------------
-
-    stage('checkout source') {
-        checkout scm
-    }
-
-
 
 	stage('update variables') {
 		// dynamically set the environment properties from .env
@@ -208,6 +203,12 @@ node {
 			println "*** DO YOU SEE ME - This is the end.***"
 	  	//}
 	}
+
+    }
+
+	
+
+
 }
 
 def command(script) {
