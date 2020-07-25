@@ -23,6 +23,7 @@ pipeline {
 			// }		
 
 			step {
+				// https://stackoverflow.com/questions/45399894/is-it-impossible-to-checkout-a-different-branch-in-jenkinsfile
 				checkout([
 					$class: 'GitSCM',
 					branches: scm.branches,
