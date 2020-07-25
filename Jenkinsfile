@@ -56,7 +56,7 @@ pipeline {
 
         stage('Production') {
             when {
-                branch 'master'
+                branch 'origin/master'
             }			
             steps {
                 sh 'echo "Production/master Stage"'
