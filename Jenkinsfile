@@ -13,13 +13,18 @@ pipeline {
 		// Check out code from source control.
 		// -------------------------------------------------------------------------
 
-		stage('checkout source') {
-			checkout scm
+		stage('checkout source') {			
+			steps {
+                checkout scm
+            }
 		}
 
 
 		stage('Boot Camp') {
-			command "cat ./asciiart/bunny.txt"
+			steps {
+				command "cat ./asciiart/bunny.txt"
+			}
+			
 		}
 
         stage('Development') {
@@ -49,41 +54,42 @@ pipeline {
 	
 	
 		stage('update variables') {
-			// dynamically set the environment properties from .env
-			// .properties file way
-			path = "${workspace}/.env"
-			
-			// ERROR: java.lang.NoSuchMethodError: No such DSL method 'readProperties'
-			// require: https://plugins.jenkins.io/pipeline-utility-steps/
-			readProperties(file: path).each {key, value -> env[key] = value }
-
-			// This is working correctly
-			// Groovy way but require a groovy syntax file
-			// load "${env.WORKSPACE}/env-devcicd.groovy"
-
-			// root user where home=/root
-			echo "${HOME}"
-			echo "${env.WORKSPACE}"
-			
-			
-			//load "${env.WORKSPACE}/.env"
-			// bash usage
-			echo "${env.DB_URL}"
-			// groovy usage	
-			println env.DB_URL
+			steps {
+				// dynamically set the environment properties from .env
+				// .properties file way
+				path = "${workspace}/.env"
 				
-			echo "${env.DB_URL2}"
-			println "*** DB_URL2=" + env.DB_URL2
+				// ERROR: java.lang.NoSuchMethodError: No such DSL method 'readProperties'
+				// require: https://plugins.jenkins.io/pipeline-utility-steps/
+				readProperties(file: path).each {key, value -> env[key] = value }
 
-				def SF_CONSUMER_KEY=env.SF_CONSUMER_KEY
-				def SF_USERNAME=env.SF_USERNAME
-				def SERVER_KEY_CREDENTIALS_ID=env.SERVER_KEY_CREDENTIALS_ID
-				def DEPLOYDIR=env.DEPLOYDIR
-				def TEST_LEVEL=env.TEST_LEVEL
-				def ALIAS=env.ALIAS
-				def DOCKER_SFORG=env.DOCKER_SFORG
-				def SF_INSTANCE_URL = env.SF_INSTANCE_URL ?: "https://test.salesforce.com"
+				// This is working correctly
+				// Groovy way but require a groovy syntax file
+				// load "${env.WORKSPACE}/env-devcicd.groovy"
+
+				// root user where home=/root
+				echo "${HOME}"
+				echo "${env.WORKSPACE}"
 				
+				
+				//load "${env.WORKSPACE}/.env"
+				// bash usage
+				echo "${env.DB_URL}"
+				// groovy usage	
+				println env.DB_URL
+					
+				echo "${env.DB_URL2}"
+				println "*** DB_URL2=" + env.DB_URL2
+
+					def SF_CONSUMER_KEY=env.SF_CONSUMER_KEY
+					def SF_USERNAME=env.SF_USERNAME
+					def SERVER_KEY_CREDENTIALS_ID=env.SERVER_KEY_CREDENTIALS_ID
+					def DEPLOYDIR=env.DEPLOYDIR
+					def TEST_LEVEL=env.TEST_LEVEL
+					def ALIAS=env.ALIAS
+					def DOCKER_SFORG=env.DOCKER_SFORG
+					def SF_INSTANCE_URL = env.SF_INSTANCE_URL ?: "https://test.salesforce.com"
+			}				
 		}
 	
 
