@@ -23,18 +23,11 @@ pipeline {
 		stage('Boot Camp') {
 			steps {
 				command "cat ./asciiart/bunny.txt"
+				echo "*** That's all folks!"
 			}
 			
 		}
-
-        stage('Master') {
-            when {
-                branch 'master'
-            }			
-            steps {
-                sh 'echo "Master Stage"'
-            }
-        }		
+	
 
         stage('Development') {
             when {
