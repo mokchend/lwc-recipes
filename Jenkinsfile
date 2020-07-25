@@ -31,7 +31,8 @@ pipeline {
 					git fetch --all
 				"""
 				println "BRANCH_NAME"
-				println "${env.BRANCH_NAME}"
+				sh "${env.BRANCH_NAME}"
+				println "env.BRANCH_NAME"
 				println "$BRANCH_NAME"
 				/*
 				checkout([
