@@ -14,7 +14,9 @@ pipeline {
 
 			steps {
 				//checkout scm
-				git branch: 'master', url: 'https://github.com/mokchend/lwc-recipes.git'
+				//git branch: 'master', url: 'https://github.com/mokchend/lwc-recipes.git'
+				checkout([$class: 'GitSCM', branches: [[name: '*/master']],
+    					userRemoteConfigs: [[url: 'https://github.com/mokchend/lwc-recipes.git']]])
 				echo "Check your environment variables"
 			}			
 		}
