@@ -13,7 +13,7 @@ pipeline {
 		// Check out code from source control.
 		// -------------------------------------------------------------------------
 
-		stage('checkout source') {			
+		stage('Checkout source') {			
 			steps {
                 checkout scm
             }
@@ -26,6 +26,15 @@ pipeline {
 			}
 			
 		}
+
+        stage('Master') {
+            when {
+                branch 'master'
+            }			
+            steps {
+                sh 'echo "Master Stage"'
+            }
+        }		
 
         stage('Development') {
             when {
@@ -63,14 +72,7 @@ pipeline {
             }
         }
 
-        stage('Master') {
-            when {
-                branch 'master'
-            }			
-            steps {
-                sh 'echo "Master Stage"'
-            }
-        }		
+		
 
 	
     }
