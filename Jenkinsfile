@@ -56,7 +56,7 @@ pipeline {
 
         stage('Production') {
             when {
-                branch 'origin/master'
+                expression { BRANCH_NAME ==~ /(master)/ }
             }			
             steps {
                 sh 'echo "Production/master Stage"'
