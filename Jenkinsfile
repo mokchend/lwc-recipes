@@ -11,10 +11,12 @@ pipeline {
 		// -------------------------------------------------------------------------
 
 		stage('Project init') {			
+
 			steps {
-                checkout scm
+				//checkout scm
+				git branch: 'master', url: 'https://github.com/mokchend/lwc-recipes.git'
 				echo "Check your environment variables"
-            }
+			}			
 		}
 
 
