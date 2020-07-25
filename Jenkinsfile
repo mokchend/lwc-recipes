@@ -28,7 +28,7 @@ pipeline {
 					$class: 'GitSCM',
 					branches: scm.branches,
 					extensions: scm.extensions + [[$class: 'LocalBranch'], [$class: 'WipeWorkspace']],
-					userRemoteConfigs: [[url: 'https://github.com/mokchend/lwc-recipes.git']]])
+					userRemoteConfigs: [[url: 'https://github.com/mokchend/lwc-recipes.git']]],
 					doGenerateSubmoduleConfigurations: false
 				])
 			}	
