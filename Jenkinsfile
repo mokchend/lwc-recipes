@@ -23,14 +23,16 @@ pipeline {
 			// }		
 
 			steps {
-				println "BRANCH_NAME"
-				println "${env.BRANCH_NAME}"
+
 				// https://stackoverflow.com/questions/45399894/is-it-impossible-to-checkout-a-different-branch-in-jenkinsfile
 				checkout scm
 				sh """
 					git config remote.origin.fetch '+refs/heads/*:refs/remotes/origin/*'
 					git fetch --all
 				"""
+				println "BRANCH_NAME"
+				println "${env.BRANCH_NAME}"
+				println "$BRANCH_NAME"
 				/*
 				checkout([
 					$class: 'GitSCM',
