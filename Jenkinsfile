@@ -54,9 +54,8 @@ pipeline {
             }
         }
 
-        stage('Production') {
+        stage('Production/Master') {
             when {
-                beforeAgent true
     			branch 'master'
             }	
             steps {
