@@ -53,7 +53,7 @@ pipeline {
 
 	
 	
-		stage('update variables') {
+		//stage('update variables') {
 			steps {
 				// dynamically set the environment properties from .env
 				// .properties file way
@@ -90,7 +90,7 @@ pipeline {
 					def DOCKER_SFORG=env.DOCKER_SFORG
 					def SF_INSTANCE_URL = env.SF_INSTANCE_URL ?: "https://test.salesforce.com"
 			}				
-		}
+		//}
 	
 
 		// -------------------------------------------------------------------------
