@@ -40,9 +40,9 @@
         "prettier-plugin-apex": "^1.5.0",
         "semver": "^7.3.2"
     },
-    "husky": {
+    "husky1": {
         "hooks": {
-            //"pre-commit": "lint-staged && npm run lint:aura"
+            "pre-commit": "lint-staged && npm run lint:aura"
         }
     },
     "lint-staged": {

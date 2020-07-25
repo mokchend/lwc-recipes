@@ -53,50 +53,55 @@ pipeline {
 
 	
 	
-		//stage('update variables') {
+		stage('update variables') {
 			steps {
-				// dynamically set the environment properties from .env
-				// .properties file way
-				path = "${workspace}/.env"
+                sh 'echo "Environment settings checks"'
+            }
+			// steps {
+			// 	// dynamically set the environment properties from .env
+			// 	// .properties file way
+			// 	path = "${workspace}/.env"
 				
-				// ERROR: java.lang.NoSuchMethodError: No such DSL method 'readProperties'
-				// require: https://plugins.jenkins.io/pipeline-utility-steps/
-				readProperties(file: path).each {key, value -> env[key] = value }
+			// 	// ERROR: java.lang.NoSuchMethodError: No such DSL method 'readProperties'
+			// 	// require: https://plugins.jenkins.io/pipeline-utility-steps/
+			// 	readProperties(file: path).each {key, value -> env[key] = value }
 
-				// This is working correctly
-				// Groovy way but require a groovy syntax file
-				// load "${env.WORKSPACE}/env-devcicd.groovy"
+			// 	// This is working correctly
+			// 	// Groovy way but require a groovy syntax file
+			// 	// load "${env.WORKSPACE}/env-devcicd.groovy"
 
-				// root user where home=/root
-				echo "${HOME}"
-				echo "${env.WORKSPACE}"
+			// 	// root user where home=/root
+			// 	echo "${HOME}"
+			// 	echo "${env.WORKSPACE}"
 				
 				
-				//load "${env.WORKSPACE}/.env"
-				// bash usage
-				echo "${env.DB_URL}"
-				// groovy usage	
-				println env.DB_URL
+			// 	//load "${env.WORKSPACE}/.env"
+			// 	// bash usage
+			// 	echo "${env.DB_URL}"
+			// 	// groovy usage	
+			// 	println env.DB_URL
 					
-				echo "${env.DB_URL2}"
-				println "*** DB_URL2=" + env.DB_URL2
+			// 	echo "${env.DB_URL2}"
+			// 	println "*** DB_URL2=" + env.DB_URL2
 
-					def SF_CONSUMER_KEY=env.SF_CONSUMER_KEY
-					def SF_USERNAME=env.SF_USERNAME
-					def SERVER_KEY_CREDENTIALS_ID=env.SERVER_KEY_CREDENTIALS_ID
-					def DEPLOYDIR=env.DEPLOYDIR
-					def TEST_LEVEL=env.TEST_LEVEL
-					def ALIAS=env.ALIAS
-					def DOCKER_SFORG=env.DOCKER_SFORG
-					def SF_INSTANCE_URL = env.SF_INSTANCE_URL ?: "https://test.salesforce.com"
-			}				
-		//}
+			// 		def SF_CONSUMER_KEY=env.SF_CONSUMER_KEY
+			// 		def SF_USERNAME=env.SF_USERNAME
+			// 		def SERVER_KEY_CREDENTIALS_ID=env.SERVER_KEY_CREDENTIALS_ID
+			// 		def DEPLOYDIR=env.DEPLOYDIR
+			// 		def TEST_LEVEL=env.TEST_LEVEL
+			// 		def ALIAS=env.ALIAS
+			// 		def DOCKER_SFORG=env.DOCKER_SFORG
+			// 		def SF_INSTANCE_URL = env.SF_INSTANCE_URL ?: "https://test.salesforce.com"
+			// }				
+		}
 	
 
 		// -------------------------------------------------------------------------
 		// Run all the enclosed stages with access to the Salesforce
 		// JWT key credentials.
 		// -------------------------------------------------------------------------
+		stage('update variables') {
+			steps {
 
 		withEnv(["HOME=${env.WORKSPACE}"]) {	
 		
@@ -211,9 +216,11 @@ pipeline {
 			//withCredentials([file(credentialsId: SERVER_KEY_CREDENTIALS_ID, variable: 'server_key_file')]) {
 				println "*** DO YOU SEE ME - This is the end.***"
 			//}
-		}
-
-    }
+						
+			}
+		}				
+			}
+    	}
 
 
 
