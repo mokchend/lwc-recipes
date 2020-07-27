@@ -31,13 +31,13 @@ pipeline {
 
 
                 script {
-                    //docker.withServer('tcp://my.docker.host:2345') {
+                    docker.withServer('tcp://localhost:2375') {
                         docker.image('salesforce-dx').inside {
                             sh 'sfdx force'
                             sh 'sfdx --version'
                             input message: 'Finished using the web site? (Click "Proceed" to continue)'
                         }                
-                    //}
+                    }
                 }
 
 
