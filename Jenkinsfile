@@ -22,39 +22,39 @@ pipeline {
                 echo "*** Test Step"
             }
         }
-        stage('Deliver for development') {
-            when {
-                branch 'development'
-            }
-            steps {
-                //sh './jenkins/scripts/deliver-for-development.sh'
-                echo "*** Development branch"
-                input message: 'Finished using the web site? (Click "Proceed" to continue)'
-                //sh './jenkins/scripts/kill.sh'
-            }
-        }
-        stage('Deliver for integration') {
-            when {
-                branch 'integration'
-            }
-            steps {
-                //sh './jenkins/scripts/deliver-for-development.sh'
-                echo "*** Integration branch"
-                input message: 'Finished using the web site? (Click "Proceed" to continue)'
-                //sh './jenkins/scripts/kill.sh'
-            }
-        }      
-        stage('Deliver for Acceptance') {
-            when {
-                branch 'acceptance'
-            }
-            steps {
-                //sh './jenkins/scripts/deliver-for-development.sh'
-                echo "*** Integration branch"
-                input message: 'Finished using the web site? (Click "Proceed" to continue)'
-                //sh './jenkins/scripts/kill.sh'
-            }
-        }          
+        // stage('Deliver for development') {
+        //     when {
+        //         branch 'development'
+        //     }
+        //     steps {
+        //         //sh './jenkins/scripts/deliver-for-development.sh'
+        //         echo "*** Development branch"
+        //         input message: 'Finished using the web site? (Click "Proceed" to continue)'
+        //         //sh './jenkins/scripts/kill.sh'
+        //     }
+        // }
+        // stage('Deliver for integration') {
+        //     when {
+        //         branch 'integration'
+        //     }
+        //     steps {
+        //         //sh './jenkins/scripts/deliver-for-development.sh'
+        //         echo "*** Integration branch"
+        //         input message: 'Finished using the web site? (Click "Proceed" to continue)'
+        //         //sh './jenkins/scripts/kill.sh'
+        //     }
+        // }      
+        // stage('Deliver for Acceptance') {
+        //     when {
+        //         branch 'acceptance'
+        //     }
+        //     steps {
+        //         //sh './jenkins/scripts/deliver-for-development.sh'
+        //         echo "*** Integration branch"
+        //         input message: 'Finished using the web site? (Click "Proceed" to continue)'
+        //         //sh './jenkins/scripts/kill.sh'
+        //     }
+        // }          
         stage('Deploy for master') {
             when {
                 branch 'master'
@@ -66,16 +66,16 @@ pipeline {
                 //sh './jenkins/scripts/kill.sh'
             }
         }
-        stage('Deploy for production') {
-            when {
-                branch 'production'
-            }
-            steps {
-                //sh './jenkins/scripts/deploy-for-production.sh'
-                echo "*** Production branch"
-                input message: 'Finished using the web site? (Click "Proceed" to continue)'
-                //sh './jenkins/scripts/kill.sh'
-            }
-        }
+        // stage('Deploy for production') {
+        //     when {
+        //         branch 'production'
+        //     }
+        //     steps {
+        //         //sh './jenkins/scripts/deploy-for-production.sh'
+        //         echo "*** Production branch"
+        //         input message: 'Finished using the web site? (Click "Proceed" to continue)'
+        //         //sh './jenkins/scripts/kill.sh'
+        //     }
+        // }
     }
 }
