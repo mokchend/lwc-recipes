@@ -28,7 +28,7 @@ pipeline {
           filename "/home/code/dotfiles/dockers/salesforce/Dockerfile"
           //‘Jenkins’ doesn’t have label ‘my-internal-salesforce-dx’
           //label "my-internal-salesforce-dx"
-          //label "my-internal-salesforce-dx"
+          label "salesforce-dx"
         }
       }    
     
