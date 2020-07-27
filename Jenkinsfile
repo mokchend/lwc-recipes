@@ -27,10 +27,13 @@ pipeline {
     stages {
         stage('Environment variables & sanity checks') {
             steps {
-                docker.image('salesforce-dx').inside {
-                    sh 'sfdx force'
-                    sh 'sfdx --version'
+                docker.withServer('tcp://my.docker.host:2345') {
+                    docker.image('salesforce-dx').inside {
+                        sh 'sfdx force'
+                        sh 'sfdx --version'
+                    }                
                 }
+
                 input message: 'Finished checking ? (Click "Proceed" to continue)'
             }
         }        
