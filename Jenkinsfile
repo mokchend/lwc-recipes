@@ -3,10 +3,17 @@ pipeline {
     agent {
         // ERROR when : echo "*** Starting agent"
         // Must be one of [any, docker, dockerfile, kubernetes, label, none]
+        // https://www.jenkins.io/doc/book/pipeline/docker/
         docker {
             image 'chendamok/salesforce-dx:latest'
+            args '-v /mnt/v/docker-persist-datas/users/home/root_salesforce:/root'
+            args '-v /mnt/v/data01:/data01'
             //args '-p 3000:3000 -p 5000:5000' 
-        }
+                  
+      //- ../../envs:/workspace/config
+      //- /mnt/v/data01:/data01      
+      //- /var/run/docker.sock:/var/run/docker.sock
+        
     }
     // environment {
     //     CI = 'true'
