@@ -1,6 +1,7 @@
 pipeline {
+    // Pipeline is designed to easily use Docker images as the execution environment for a single Stage or the entire Pipeline.
     agent {
-        //echo "*** Starting agent"
+        echo "*** Starting agent"
         docker {
             image 'node:6-alpine'
             //args '-p 3000:3000 -p 5000:5000' 
