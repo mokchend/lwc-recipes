@@ -1,6 +1,7 @@
 pipeline {
     // Pipeline is designed to easily use Docker images as the execution environment for a single Stage or the entire Pipeline.
     agent {
+        any
         // ERROR when : echo "*** Starting agent"
         // Must be one of [any, docker, dockerfile, kubernetes, label, none]
         // https://www.jenkins.io/doc/book/pipeline/docker/
