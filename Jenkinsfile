@@ -31,13 +31,14 @@ pipeline {
 
 
                 script {
-                    docker.withServer('tcp://localhost:2375') {
+                    //Cannot connect to the Docker daemon at tcp://localhost:2375. Is the docker daemon running?
+                    //docker.withServer('tcp://localhost:2375') {
                         docker.image('salesforce-dx').inside {
                             sh 'sfdx force'
                             sh 'sfdx --version'
                             input message: 'Finished using the web site? (Click "Proceed" to continue)'
                         }                
-                    }
+                    //}
                 }
 
 
