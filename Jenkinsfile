@@ -24,6 +24,7 @@ pipeline {
             steps {
                 sh 'sfdx force'
                 sh 'sfdx --version'
+                input message: 'Finished checking ? (Click "Proceed" to continue)'
             }
         }        
         stage('Build') {
