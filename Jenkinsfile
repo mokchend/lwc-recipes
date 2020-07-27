@@ -23,14 +23,14 @@ pipeline {
     
     
     //agent any  
-      agent {
-        dockerfile {
-          filename "/home/code/dotfiles/dockers/salesforce/Dockerfile"
-          //‘Jenkins’ doesn’t have label ‘my-internal-salesforce-dx’
-          //label "my-internal-salesforce-dx"
-          label "salesforce-dx"
-        }
-      }    
+    //   agent {
+    //     dockerfile {
+    //       filename "/home/code/dotfiles/dockers/salesforce/Dockerfile"
+    //       //‘Jenkins’ doesn’t have label ‘my-internal-salesforce-dx’
+    //       //label "my-internal-salesforce-dx"
+    //       label "salesforce-dx"
+    //     }
+    //   }    
     
     
     
@@ -49,8 +49,8 @@ pipeline {
                         // Error response from daemon: pull access denied for salesforce-dx, repository does not exist 
                         // or may require 'docker login': denied: requested access to the resource is denied
                         //docker.image('salesforce-dx').inside {
-                            sh 'sfdx force'
-                            sh 'sfdx --version'
+                            sh 'docker exec -it salesforce-dx sfdx force'
+                            sh 'docker exec -it salesforce-dx sfdx --version'
                             input message: 'Finished using the web site? (Click "Proceed" to continue)'
                         //}                
                     //}
