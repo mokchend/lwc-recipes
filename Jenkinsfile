@@ -9,6 +9,7 @@ pipeline {
             args '-v /mnt/v/docker-persist-datas/users/home/root_salesforce:/root'
             args '-v /mnt/v/data01:/data01'
             //args '-p 3000:3000 -p 5000:5000' 
+        }
                   
       //- ../../envs:/workspace/config
       //- /mnt/v/data01:/data01      
