@@ -22,7 +22,8 @@ pipeline {
     //}
     
     
-    //agent any  
+    agent any  
+    
     //   agent {
     //     dockerfile {
     //       filename "/home/code/dotfiles/dockers/salesforce/Dockerfile"
