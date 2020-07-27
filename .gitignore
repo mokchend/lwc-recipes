@@ -36,5 +36,6 @@ $RECYCLE.BIN/
 
 # VS Code project settings
 .vscode/
-
 dotfiles
+certificates
+.devcontainer
