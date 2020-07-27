@@ -20,7 +20,18 @@ pipeline {
       //- /var/run/docker.sock:/var/run/docker.sock
         
     //}
-    agent any  
+    
+    
+    //agent any  
+      agent {
+        dockerfile {
+          filename "/home/code/dotfiles/dockers/salesforce/Dockerfile"
+          label "my-internal-salesforce-dx"
+        }
+      }    
+    
+    
+    
     // environment {
     //     CI = 'true'
     // }
@@ -33,11 +44,13 @@ pipeline {
                 script {
                     //Cannot connect to the Docker daemon at tcp://localhost:2375. Is the docker daemon running?
                     //docker.withServer('tcp://localhost:2375') {
-                        docker.image('salesforce-dx').inside {
+                        // Error response from daemon: pull access denied for salesforce-dx, repository does not exist 
+                        // or may require 'docker login': denied: requested access to the resource is denied
+                        //docker.image('salesforce-dx').inside {
                             sh 'sfdx force'
                             sh 'sfdx --version'
                             input message: 'Finished using the web site? (Click "Proceed" to continue)'
-                        }                
+                        //}                
                     //}
                 }
 
