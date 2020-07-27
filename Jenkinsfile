@@ -55,6 +55,17 @@ pipeline {
                 //sh './jenkins/scripts/kill.sh'
             }
         }          
+        stage('Deploy for master') {
+            when {
+                branch 'master'
+            }
+            steps {
+                //sh './jenkins/scripts/deploy-for-production.sh'
+                echo "*** Master branch"
+                input message: 'Finished using the web site? (Click "Proceed" to continue)'
+                //sh './jenkins/scripts/kill.sh'
+            }
+        }
         stage('Deploy for production') {
             when {
                 branch 'production'
