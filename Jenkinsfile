@@ -26,7 +26,9 @@ pipeline {
       agent {
         dockerfile {
           filename "/home/code/dotfiles/dockers/salesforce/Dockerfile"
-          label "my-internal-salesforce-dx"
+          //‘Jenkins’ doesn’t have label ‘my-internal-salesforce-dx’
+          //label "my-internal-salesforce-dx"
+          //label "my-internal-salesforce-dx"
         }
       }    
     
