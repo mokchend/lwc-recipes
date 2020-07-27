@@ -4,7 +4,7 @@ pipeline {
         // ERROR when : echo "*** Starting agent"
         // Must be one of [any, docker, dockerfile, kubernetes, label, none]
         docker {
-            image 'node:6-alpine'
+            image 'chendamok/sforg:latest'
             //args '-p 3000:3000 -p 5000:5000' 
         }
     }
