@@ -4,12 +4,16 @@ pipeline {
         // ERROR when : echo "*** Starting agent"
         // Must be one of [any, docker, dockerfile, kubernetes, label, none]
         // https://www.jenkins.io/doc/book/pipeline/docker/
-        docker {
-            image 'chendamok/salesforce-dx:latest'
-            args '-v /mnt/v/docker-persist-datas/users/home/root_salesforce:/root'
-            args '-v /mnt/v/data01:/data01'
-            //args '-p 3000:3000 -p 5000:5000' 
-        }
+
+
+        // TODO: this might not be the best path experience to always dynamicall create the BIG image for every commit !!!
+        // better ssh into salesforce-dx container
+        // docker {
+        //     image 'chendamok/salesforce-dx:latest'
+        //     args '-v /mnt/v/docker-persist-datas/users/home/root_salesforce:/root'
+        //     args '-v /mnt/v/data01:/data01'
+        //     //args '-p 3000:3000 -p 5000:5000' 
+        // }
                   
       //- ../../envs:/workspace/config
       //- /mnt/v/data01:/data01      
@@ -22,8 +26,10 @@ pipeline {
     stages {
         stage('Environment variables & sanity checks') {
             steps {
-                sh 'sfdx force'
-                sh 'sfdx --version'
+                docker.image('salesforce-dx').inside {
+                    sh 'sfdx force'
+                    sh 'sfdx --version'
+                }
                 input message: 'Finished checking ? (Click "Proceed" to continue)'
             }
         }        
