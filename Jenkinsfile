@@ -33,8 +33,10 @@ pipeline {
         
 
             steps {
-                sh 'cd force-app/main/default/ && npm run profile-reconciliation'
                 input message: 'Finished profile-reconciliation (Click "Proceed" to continue)'
+
+                sh 'cd ./force-app/main/default/ && npm run profile-reconciliation'
+                
             }
         }
 
