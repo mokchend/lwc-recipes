@@ -12,7 +12,7 @@ pipeline {
             image 'chendamok/salesforce-dx:latest'
             args '-v /mnt/v/docker-persist-datas/users/home/salesforce:/home/salesforce'
             args '-v /mnt/v/data01:/data01'
-            args '-v ../../envs:/workspace/config'
+            //args '-v ../../envs:/workspace/config'
             //args '-p 3000:3000 -p 5000:5000' 
         }
         
