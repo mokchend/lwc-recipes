@@ -9,6 +9,7 @@ pipeline {
         // ERROR when : echo "*** Starting agent"
         // Must be one of [any, docker, dockerfile, kubernetes, label, none]
         // https://www.jenkins.io/doc/book/pipeline/docker/
+        label 'my-agent-salesforce-dx'
 
 
         // TODO: this might not be the best path experience to always dynamicall create the BIG image for every commit !!!
@@ -45,8 +46,8 @@ pipeline {
         stage("Demo - Calling Dockerfile") {
             agent {
                 dockerfile {
-                filename "/workspace/dockers/salesforce/Dockerfile"
-                label "my-pipeline-docker-sfdx"
+                    filename "/workspace/dockers/salesforce/Dockerfile"
+                    label "'my-agent-salesforce-dx'"
                 }
             }
 
