@@ -1,7 +1,7 @@
 pipeline {
 
     environment {
-        workspace = '/home/mokch/code/dotfiles'
+        def workspace = '/home/mokch/code/dotfiles'
     }
 
     // Pipeline is designed to easily use Docker images as the execution environment for a single Stage or the entire Pipeline.
@@ -52,6 +52,7 @@ pipeline {
                         // or may require 'docker login': denied: requested access to the resource is denied
                         //docker.image('salesforce-dx').inside {
                             // The DinD will execute theses command below
+                            echo "Home Directory=${workspace}"
                             sh 'sfdx force'
                             sh 'sfdx --version'                            
                             input message: 'Finished using the web site? (Click "Proceed" to continue)'
