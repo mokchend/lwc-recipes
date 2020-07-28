@@ -43,18 +43,20 @@ pipeline {
     stages {
 
         // https://www.theguild.nl/jenkinsfiles-for-beginners-and-masochists/
-        stage("Demo - Calling Dockerfile") {
-            agent {
-                dockerfile {
-                    filename "/workspace/dockers/salesforce/Dockerfile"
-                    label "'my-agent-salesforce-dx'"
-                }
-            }
+        // NOT WORKING
+        // stage("Demo - Calling Dockerfile") {
+        //     agent {
+        //         dockerfile {
+        //             filename "/workspace/dockers/salesforce/Dockerfile"
+        //             label "'my-agent-salesforce-dx'"
+        //         }
+        //     }
 
-            steps {
-                sh 'sfdx --version'
-            }
-        }        
+        //     steps {
+        //         sh 'sfdx --version'
+        //     }
+        // }
+
         stage('Environment variables & sanity checks') {
             steps {
 
