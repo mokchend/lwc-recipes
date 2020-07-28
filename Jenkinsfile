@@ -10,14 +10,11 @@ pipeline {
         // better ssh into salesforce-dx container
         docker {
             image 'chendamok/salesforce-dx:latest'
-            args '-v /mnt/v/docker-persist-datas/users/home/root_salesforce:/root'
+            args '-v /mnt/v/docker-persist-datas/users/home/salesforce:/home/salesforce'
             args '-v /mnt/v/data01:/data01'
+            args '-v ../../envs:/workspace/config'
             //args '-p 3000:3000 -p 5000:5000' 
         }
-                  
-      //- ../../envs:/workspace/config
-      //- /mnt/v/data01:/data01      
-      //- /var/run/docker.sock:/var/run/docker.sock
         
     }
     
@@ -42,7 +39,7 @@ pipeline {
         stage('Environment variables & sanity checks') {
             steps {
 
-                // The conatiner is not DEFINED as we need to share deamon between dind and host    
+                // The container is not DEFINED as we need to share deamon between dind and host    
 
                 script {
                     //Cannot connect to the Docker daemon at tcp://localhost:2375. Is the docker daemon running?
@@ -53,14 +50,11 @@ pipeline {
                             // The DinD will execute theses command below
                             sh 'sfdx force'
                             sh 'sfdx --version'
+                            sh 'sfdx force:auth:login'
                             input message: 'Finished using the web site? (Click "Proceed" to continue)'
                         //}                
                     //}
                 }
-
-
-
-                input message: 'Finished checking ? (Click "Proceed" to continue)'
             }
         }        
         stage('Build') {
@@ -75,39 +69,57 @@ pipeline {
                 echo "*** Test Step"
             }
         }
-        // stage('Deliver for development') {
-        //     when {
-        //         branch 'development'
-        //     }
-        //     steps {
-        //         //sh './jenkins/scripts/deliver-for-development.sh'
-        //         echo "*** Development branch"
-        //         input message: 'Finished using the web site? (Click "Proceed" to continue)'
-        //         //sh './jenkins/scripts/kill.sh'
-        //     }
-        // }
-        // stage('Deliver for integration') {
-        //     when {
-        //         branch 'integration'
-        //     }
-        //     steps {
-        //         //sh './jenkins/scripts/deliver-for-development.sh'
-        //         echo "*** Integration branch"
-        //         input message: 'Finished using the web site? (Click "Proceed" to continue)'
-        //         //sh './jenkins/scripts/kill.sh'
-        //     }
-        // }      
-        // stage('Deliver for Acceptance') {
-        //     when {
-        //         branch 'acceptance'
-        //     }
-        //     steps {
-        //         //sh './jenkins/scripts/deliver-for-development.sh'
-        //         echo "*** Integration branch"
-        //         input message: 'Finished using the web site? (Click "Proceed" to continue)'
-        //         //sh './jenkins/scripts/kill.sh'
-        //     }
-        // }          
+
+        stage('Deliver for development') {
+            when {
+                branch 'development'
+            }
+            steps {
+                //sh './jenkins/scripts/deliver-for-development.sh'
+                echo "*** Development branch"
+                //input message: 'Finished using the web site? (Click "Proceed" to continue)'
+                //sh './jenkins/scripts/kill.sh'
+            }
+        }
+
+        stage('Deliver for integration') {
+            when {
+                branch 'integration'
+            }
+            steps {
+                //sh './jenkins/scripts/deliver-for-development.sh'
+                echo "*** Integration branch"
+                //input message: 'Finished using the web site? (Click "Proceed" to continue)'
+                //sh './jenkins/scripts/kill.sh'
+            }
+        }
+
+        stage('Deliver for Acceptance') {
+            when {
+                branch 'acceptance'
+            }
+            steps {
+                //sh './jenkins/scripts/deliver-for-development.sh'
+                echo "*** Integration branch"
+                //input message: 'Finished using the web site? (Click "Proceed" to continue)'
+                //sh './jenkins/scripts/kill.sh'
+            }
+        }
+
+
+        stage('Deploy for production') {
+            when {
+                branch 'production'
+            }
+            steps {
+                //sh './jenkins/scripts/deploy-for-production.sh'
+                echo "*** Production branch"
+                //input message: 'Finished using the web site? (Click "Proceed" to continue)'
+                //sh './jenkins/scripts/kill.sh'
+            }
+        }
+
+
         stage('Deploy for master') {
             when {
                 branch 'master'
@@ -118,17 +130,6 @@ pipeline {
                 //input message: 'Finished using the web site? (Click "Proceed" to continue)'
                 //sh './jenkins/scripts/kill.sh'
             }
-        }
-        // stage('Deploy for production') {
-        //     when {
-        //         branch 'production'
-        //     }
-        //     steps {
-        //         //sh './jenkins/scripts/deploy-for-production.sh'
-        //         echo "*** Production branch"
-        //         input message: 'Finished using the web site? (Click "Proceed" to continue)'
-        //         //sh './jenkins/scripts/kill.sh'
-        //     }
-        // }
+        }        
     }
 }
