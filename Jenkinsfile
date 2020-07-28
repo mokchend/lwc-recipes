@@ -63,8 +63,8 @@ pipeline {
         
             steps {
                 
-                sh "echo ${SF_VERSION}"
-                echo "*** $SF_VERSION"
+                sh "echo ${SF_VERSION}" // bash syntax
+                echo "*** $SF_VERSION"  // groovy syntax
 
                 sh "echo ${SF_USERNAME}"
                 echo "*** $SF_USERNAME"
