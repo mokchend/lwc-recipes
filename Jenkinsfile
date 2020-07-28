@@ -50,8 +50,7 @@ pipeline {
                         //docker.image('salesforce-dx').inside {
                             // The DinD will execute theses command below
                             sh 'sfdx force'
-                            sh 'sfdx --version'
-                            sh 'sfdx force:auth:list'
+                            sh 'sfdx --version'                            
                             input message: 'Finished using the web site? (Click "Proceed" to continue)'
                         //}                
                     //}
@@ -71,6 +70,18 @@ pipeline {
             }
         }
 
+        stage('Deploy for master') {
+            when {
+                branch 'master'
+            }
+            steps {
+                //sh './jenkins/scripts/deploy-for-production.sh'
+                echo "*** Master branch"
+                //input message: 'Finished using the web site? (Click "Proceed" to continue)'
+                //sh './jenkins/scripts/kill.sh'
+            }
+        }            
+
         stage('Deliver for development') {
             when {
                 branch 'development'
@@ -82,6 +93,7 @@ pipeline {
                 //sh './jenkins/scripts/kill.sh'
             }
         }
+
 
         stage('Deliver for integration') {
             when {
@@ -121,16 +133,6 @@ pipeline {
         }
 
 
-        stage('Deploy for master') {
-            when {
-                branch 'master'
-            }
-            steps {
-                //sh './jenkins/scripts/deploy-for-production.sh'
-                echo "*** Master branch"
-                //input message: 'Finished using the web site? (Click "Proceed" to continue)'
-                //sh './jenkins/scripts/kill.sh'
-            }
-        }        
+    
     }
 }
