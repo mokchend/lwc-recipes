@@ -59,8 +59,24 @@ pipeline {
     
     stages {
 
-        // https://www.theguild.nl/jenkinsfiles-for-beginners-and-masochists/
-        // NOT WORKING
+        stage("sfdc-ci-toolkit: initialize envinronment") {
+        
+            steps {
+                
+                sh "echo ${SF_VERSION}"
+                sh "echo ${SF_USERNAME}"
+                
+            }
+            steps {
+                
+                sh 'cp -Rp /workspace/sfdc-ci-toolkit/ .'
+                sh 'cd sfdc-ci-toolkit && npm run profile-reconciliation'
+                
+            }
+            
+            input message: 'Finished profile-reconciliation (Click "Proceed" to continue)'
+        }
+
         stage("sfdc-ci-toolkit: profile-completion") {
         
 
