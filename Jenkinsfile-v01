@@ -25,17 +25,36 @@ pipeline {
     }    
     
     
+    //agent any  
+
+    //   agent {
+    //     dockerfile {
+    //       filename "/home/code/dotfiles/dockers/salesforce/Dockerfile"
+    //       //‘Jenkins’ doesn’t have label ‘my-internal-salesforce-dx’
+    //       //label "my-internal-salesforce-dx"
+    //       label "salesforce-dx"
+    //     }
+    //   }    
+    
+    
+    
+
     stages {
 
         // https://www.theguild.nl/jenkinsfiles-for-beginners-and-masochists/
         // NOT WORKING
-        stage("sfdc-ci-toolkit: profile-completion") {
-        
+        // stage("Demo - Calling Dockerfile") {
+        //     agent {
+        //         dockerfile {
+        //             filename "/workspace/dockers/salesforce/Dockerfile"
+        //             label "'my-agent-salesforce-dx'"
+        //         }
+        //     }
 
-            steps {
-                sh 'cd force-app/main/default/ && npm run profile-reconciliation'
-            }
-        }
+        //     steps {
+        //         sh 'sfdx --version'
+        //     }
+        // }
 
         stage('Environment variables & sanity checks') {
             steps {
