@@ -1,16 +1,11 @@
 pipeline {
 
-    environment {
-        def workspace = '/home/mokch/code/dotfiles'
-    }
-
     // Pipeline is designed to easily use Docker images as the execution environment for a single Stage or the entire Pipeline.
     agent {
         // ERROR when : echo "*** Starting agent"
         // Must be one of [any, docker, dockerfile, kubernetes, label, none]
         // https://www.jenkins.io/doc/book/pipeline/docker/
         label 'my-agent-salesforce-dx'
-
 
         // TODO: this might not be the best path experience to always dynamicall create the BIG image for every commit !!!
         // better ssh into salesforce-dx container
@@ -24,6 +19,10 @@ pipeline {
         }
         
     }
+
+    environment {
+        def workspace = '/home/mokch/code/dotfiles'
+    }    
     
     
     //agent any  
