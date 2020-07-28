@@ -22,23 +22,23 @@ pipeline {
 
     environment {
         def workspace = '/home/mokch/code/dotfiles'
-        SF_VERSION=41.0
-        SF_USERNAME=chenda.mok@gmail.com.devcicd
-        SF_PASSWORD=Welcome-123
-        SF_SERVERURL=https://login.salesforce.com
-        SF_TESTLEVEL=NoTestRun
-        SF_RUNTESTS=
-        SF_CHECKONLY=true
-        SF_TESTSUFFIX=_TEST
-        SF_SRC_PATH=./force-app/main/default
+        SF_VERSION="41.0"
+        SF_USERNAME="chenda.mok@gmail.com.devcicd"
+        SF_PASSWORD="Welcome-123"
+        SF_SERVERURL="https://login.salesforce.com"
+        SF_TESTLEVEL="NoTestRun"
+        SF_RUNTESTS=""
+        SF_CHECKONLY="true"
+        SF_TESTSUFFIX="_TEST"
+        SF_SRC_PATH="./force-app/main/default"
         // Used for: defining the path to the repository folder
-        SF_REPO_PATH=./force-app/main/default
-        POST_SCRIPT_PATH=/script-post
-        PRE_SCRIPT_PATH=/script-pre
-        INSERT_LOAD=/insert
-        UPDATE_LOAD=/update
-        UPSERT_LOAD=/upsert
-        DELETE_LOAD=/delete
+        SF_REPO_PATH="./force-app/main/default"
+        POST_SCRIPT_PATH="/script-post"
+        PRE_SCRIPT_PATH="/script-pre"
+        INSERT_LOAD="/insert"
+        UPDATE_LOAD="/update"
+        UPSERT_LOAD="/upsert"
+        DELETE_LOAD="/delete"
 
         // Here is the list of optional parameters with their default value :
         //CURRENT_BRANCH=
