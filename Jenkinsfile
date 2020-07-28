@@ -9,7 +9,7 @@ pipeline {
         // TODO: this might not be the best path experience to always dynamicall create the BIG image for every commit !!!
         // better ssh into salesforce-dx container
         docker {
-            image 'chendamok/jenkinsci-blueocean:latest'
+            image 'chendamok/salesforce-dx:latest'
             args '-v /mnt/v/docker-persist-datas/users/home/root_salesforce:/root'
             args '-v /mnt/v/data01:/data01'
             //args '-p 3000:3000 -p 5000:5000' 
@@ -51,9 +51,8 @@ pipeline {
                         // or may require 'docker login': denied: requested access to the resource is denied
                         //docker.image('salesforce-dx').inside {
                             // The DinD will execute theses command below
-                            sh 'docker ps -a'
-                            sh 'docker exec -it salesforce-dx sfdx force'
-                            sh 'docker exec -it salesforce-dx sfdx --version'
+                            sh 'sfdx force'
+                            sh 'sfdx --version'
                             input message: 'Finished using the web site? (Click "Proceed" to continue)'
                         //}                
                     //}
