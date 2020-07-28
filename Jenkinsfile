@@ -12,6 +12,7 @@ pipeline {
             image 'chendamok/salesforce-dx:latest'
             args '-v /mnt/v/docker-persist-datas/users/home/salesforce:/home/salesforce'
             args '-v /mnt/v/data01:/data01'
+            args '-v  $HOME/code/dotfiles:/workspace'
             //args '-v ../../envs:/workspace/config'
             //args '-p 3000:3000 -p 5000:5000' 
         }
@@ -50,7 +51,7 @@ pipeline {
                             // The DinD will execute theses command below
                             sh 'sfdx force'
                             sh 'sfdx --version'
-                            sh 'sfdx force:auth:login'
+                            sh 'sfdx force:auth:list'
                             input message: 'Finished using the web site? (Click "Proceed" to continue)'
                         //}                
                     //}
