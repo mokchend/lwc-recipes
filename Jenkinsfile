@@ -40,6 +40,20 @@ pipeline {
     
 
     stages {
+
+        // https://www.theguild.nl/jenkinsfiles-for-beginners-and-masochists/
+        stage("Demo - Calling Dockerfile") {
+            agent {
+                dockerfile {
+                filename "/workspace/dockers/salesforce/Dockerfile"
+                label "my-pipeline-docker-sfdx"
+                }
+            }
+
+            steps {
+                sh 'sfdx --version'
+            }
+        }        
         stage('Environment variables & sanity checks') {
             steps {
 
