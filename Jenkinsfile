@@ -4,8 +4,7 @@ pipeline {
     agent {
         // ERROR when : echo "*** Starting agent"
         // Must be one of [any, docker, dockerfile, kubernetes, label, none]
-        // https://www.jenkins.io/doc/book/pipeline/docker/
-        label 'my-agent-salesforce-dx'
+        // https://www.jenkins.io/doc/book/pipeline/docker/        
 
         // TODO: this might not be the best path experience to always dynamicall create the BIG image for every commit !!!
         // better ssh into salesforce-dx container
@@ -17,6 +16,8 @@ pipeline {
             //args '-v ../../envs:/workspace/config'
             //args '-p 3000:3000 -p 5000:5000' 
         }
+
+        label 'my-agent-salesforce-dx'
         
     }
 
