@@ -59,22 +59,21 @@ pipeline {
     
     stages {
 
-        stage("sfdc-ci-toolkit: initialize envinronment") {
+        stage("sfdc-ci-toolkit: initialize environment") {
         
             steps {
                 
                 sh "echo ${SF_VERSION}"
                 sh "echo ${SF_USERNAME}"
-                
-            }
-            steps {
-                
+
                 sh 'cp -Rp /workspace/sfdc-ci-toolkit/ .'
                 sh 'cd sfdc-ci-toolkit && npm run profile-reconciliation'
-                
+
+                input message: 'Finished profile-reconciliation (Click "Proceed" to continue)'    
             }
+    
             
-            input message: 'Finished profile-reconciliation (Click "Proceed" to continue)'
+            
         }
 
         stage("sfdc-ci-toolkit: profile-completion") {
