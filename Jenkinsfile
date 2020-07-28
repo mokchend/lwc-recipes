@@ -1,4 +1,9 @@
 pipeline {
+
+    environment {
+        workspace = '/home/mokch/code/dotfiles'
+    }
+
     // Pipeline is designed to easily use Docker images as the execution environment for a single Stage or the entire Pipeline.
     agent {
         // ERROR when : echo "*** Starting agent"
@@ -12,7 +17,7 @@ pipeline {
             image 'chendamok/salesforce-dx:latest'
             args '-v /mnt/v/docker-persist-datas/users/home/salesforce:/home/salesforce'
             args '-v /mnt/v/data01:/data01'
-            args "-v  $HOME/code/dotfiles:/workspace" // to interprt $ sign
+            args "-v  ${workspace}:/workspace" // to interprt $ sign
             //args '-v ../../envs:/workspace/config'
             //args '-p 3000:3000 -p 5000:5000' 
         }
@@ -33,9 +38,7 @@ pipeline {
     
     
     
-    // environment {
-    //     CI = 'true'
-    // }
+
     stages {
         stage('Environment variables & sanity checks') {
             steps {
