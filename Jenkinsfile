@@ -69,8 +69,10 @@ pipeline {
                 sh "echo ${SF_USERNAME}"
                 echo "*** $SF_USERNAME"
 
+                //Issue: contains full original path folder structure
+                // tar -cf - /workspace/sfdc-ci-toolkit | tar -C /tmp/ -xvf -^C
                 sh 'cp -Rp /workspace/sfdc-ci-toolkit/ .'
-                sh 'cd sfdc-ci-toolkit && npm run profile-reconciliation'
+                sh 'cd sfdc-ci-toolkit && npm run profile-reconciliation && npm run profile-reconciliation'
 
                 //input message: 'Finished profile-reconciliation (Click "Proceed" to continue)'    
             }
