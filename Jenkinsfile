@@ -23,7 +23,7 @@ pipeline {
     
     
     agent any  
-    
+
     //   agent {
     //     dockerfile {
     //       filename "/home/code/dotfiles/dockers/salesforce/Dockerfile"
@@ -42,7 +42,7 @@ pipeline {
         stage('Environment variables & sanity checks') {
             steps {
 
-
+                // The conatiner is not DEFINED as we need to share deamon between dind and host    
 
                 script {
                     //Cannot connect to the Docker daemon at tcp://localhost:2375. Is the docker daemon running?
@@ -50,6 +50,7 @@ pipeline {
                         // Error response from daemon: pull access denied for salesforce-dx, repository does not exist 
                         // or may require 'docker login': denied: requested access to the resource is denied
                         //docker.image('salesforce-dx').inside {
+                            sh 'docker ps -a'
                             sh 'docker exec -it salesforce-dx sfdx force'
                             sh 'docker exec -it salesforce-dx sfdx --version'
                             input message: 'Finished using the web site? (Click "Proceed" to continue)'
