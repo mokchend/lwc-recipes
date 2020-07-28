@@ -65,11 +65,12 @@ pipeline {
         
 
             steps {
-                input message: 'Finished profile-reconciliation (Click "Proceed" to continue)'
-
+                
                 sh 'cd sfdc-ci-toolkit && npm run profile-reconciliation'
                 
             }
+            
+            input message: 'Finished profile-reconciliation (Click "Proceed" to continue)'
         }
 
         stage('Environment variables & sanity checks') {
